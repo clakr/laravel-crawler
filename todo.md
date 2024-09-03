@@ -4,7 +4,7 @@
 
 ## Todo
 
--   [ ] URL input to crawl
+-   [x] URL input to crawl
 -   [ ] History Crawled List Page
     -   [ ] Thumbnail of the screenshot
     -   [ ] Title with URL as a link
