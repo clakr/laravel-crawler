@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('screenshot_img');
             $table->string('title');
             $table->text('description');
+            $table->text('body');
             $table->timestamps();
         });
     }

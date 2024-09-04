@@ -21,6 +21,7 @@ class CrawlUrlFactory extends Factory
             'screenshot_img' => fake()->imageUrl(),
             'title' => fake()->sentence(),
             'description' => fake()->paragraph(),
+            'body' => fake()->randomHtml(),
         ];
     }
 }

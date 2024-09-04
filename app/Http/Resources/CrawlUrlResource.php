@@ -20,6 +20,7 @@ class CrawlUrlResource extends JsonResource
             'screenshotImg' => $this->screenshot_img,
             'title' => $this->title,
             'description' => $this->description,
+            'body' => $this->body,
             'createdAt' => $this->created_at,
         ];
     }
