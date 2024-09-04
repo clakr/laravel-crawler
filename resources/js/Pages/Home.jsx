@@ -4,8 +4,68 @@ import Button from "@/Components/Button";
 import Input from "@/Components/Input";
 import Table from "@/Components/Table";
 import Pagination from "@/Components/Pagination";
+import Eye from "@/Icons/Eye";
+
+const TableHeadings = [
+  "Thumbnail",
+  "Title & Url",
+  "Description",
+  "Crawled",
+  "Actions",
+];
 
 export default function ({ resource: { data, links, meta } }) {
+  const hasData = data.length > 0;
+
+  const TableData = hasData ? (
+    data.map(({ id, url, screenshotImg, title, description, createdAt }) => (
+      <tr key={id}>
+        <Table.TableData className="w-[200px]">
+          <img
+            src={screenshotImg}
+            alt={`${title} Screenshot`}
+            className="aspect-video rounded object-cover"
+          />
+        </Table.TableData>
+        <Table.TableData>
+          <div className="flex flex-col gap-y-2">
+            <strong className="text-base">{title}</strong>
+            <a
+              href={url}
+              target="_blank"
+              className="text-blue-500 flex items-center gap-x-2"
+            >
+              {url}
+            </a>
+          </div>
+        </Table.TableData>
+        <Table.TableData className="text-balance">
+          {description}
+        </Table.TableData>
+        <Table.TableData className="whitespace-nowrap">
+          {createdAt}
+        </Table.TableData>
+        <Table.TableData>
+          <div className="flex justify-center">
+            <Button variant="icon" href={`/crawl-urls/${id}`}>
+              <span className="sr-only">View Crawled Url</span>
+              <Eye />
+            </Button>
+          </div>
+        </Table.TableData>
+      </tr>
+    ))
+  ) : (
+    <tr>
+      <Table.TableData
+        className="font-bold text-center"
+        colSpan={TableHeadings.length}
+      >
+        No Data Found
+      </Table.TableData>
+    </tr>
+  );
+
   return (
     <Base>
       <Main header="Home" className="flex flex-col gap-y-4">
@@ -19,60 +79,17 @@ export default function ({ resource: { data, links, meta } }) {
           />
           <Button>Crawl</Button>
         </form>
-        <Table
-          headings={["Thumbnail", "Title & Url", "Description", "Crawled", ""]}
-        >
-          {data.map(
-            ({ id, url, screenshotImg, title, description, createdAt }) => (
-              <tr key={id}>
-                <Table.TableData>
-                  <img
-                    src={screenshotImg}
-                    alt={`${title} Screenshot`}
-                    className="aspect-video rounded object-cover"
-                  />
-                </Table.TableData>
-                <Table.TableData>
-                  <div className="flex flex-col gap-y-2">
-                    <strong className="text-base">{title}</strong>
-                    <a
-                      href={url}
-                      target="_blank"
-                      className="text-blue-500 flex items-center gap-x-2"
-                    >
-                      {url}
-                    </a>
-                  </div>
-                </Table.TableData>
-                <Table.TableData className="text-balance">
-                  {description}
-                </Table.TableData>
-                <Table.TableData className="whitespace-nowrap">
-                  {createdAt}
-                </Table.TableData>
-                <Table.TableData>
-                  <Button variant="icon" href={`/crawl-urls/${id}`}>
-                    <span className="sr-only">View Crawled Url</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                      <path
-                        fill="currentColor"
-                        d="M12 9a3 3 0 0 1 3 3a3 3 0 0 1-3 3a3 3 0 0 1-3-3a3 3 0 0 1 3-3m0-4.5c5 0 9.27 3.11 11 7.5c-1.73 4.39-6 7.5-11 7.5S2.73 16.39 1 12c1.73-4.39 6-7.5 11-7.5M3.18 12a9.821 9.821 0 0 0 17.64 0a9.821 9.821 0 0 0-17.64 0"
-                      />
-                    </svg>
-                  </Button>
-                </Table.TableData>
-              </tr>
-            )
-          )}
-        </Table>
-        <Pagination
-          model="Crawled Urls"
-          from={meta.from}
-          to={meta.to}
-          total={meta.total}
-          next={links.next}
-          prev={links.prev}
-        />
+        <Table headings={TableHeadings}>{TableData}</Table>
+        {hasData ? (
+          <Pagination
+            model="Crawled Urls"
+            from={meta.from}
+            to={meta.to}
+            total={meta.total}
+            next={links.next}
+            prev={links.prev}
+          />
+        ) : null}
       </Main>
     </Base>
   );
