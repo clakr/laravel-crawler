@@ -5,11 +5,11 @@
 ## Todo
 
 -   [x] URL input to crawl
--   [ ] History Crawled List Page
-    -   [ ] Thumbnail of the screenshot
-    -   [ ] Title with URL as a link
-    -   [ ] HTML Description
-    -   [ ] Created At
+-   [x] History Crawled List Page
+    -   [x] Thumbnail of the screenshot
+    -   [x] Title with URL as a link
+    -   [x] HTML Description
+    -   [x] Created At
 -   [ ] Crawled Result Detail Page
     -   [ ] Screenshot
     -   [ ] Title with URL as a link
@@ -17,6 +17,6 @@
     -   [ ] HTML Body
     -   [ ] Created At
 -   [ ] Additionals
-    -   [ ] React
+    -   [x] React
     -   [ ] Unit Test
-    -   [ ] Pagination
+    -   [x] Pagination
