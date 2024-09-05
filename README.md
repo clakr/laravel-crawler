@@ -7,11 +7,23 @@ This is a repository for crawling websites using Laravel. It is a monolithic app
 Run the following commands in your terminal.
 
 ```bash
-git clone https://github.com/clakr/laravel-crawler.git
+git clone https://github.com/clakr/laravel-crawler.git && cd laravel-crawler
 ```
 
 ```bash
 composer install && npm install
+```
+
+```bash
+cp .env.example .env
+```
+
+```bash
+php artisan key:generate
+```
+
+```bash
+php artisan migrate
 ```
 
 Run the following commands in different terminals.

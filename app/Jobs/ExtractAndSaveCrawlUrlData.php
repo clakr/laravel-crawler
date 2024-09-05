@@ -43,7 +43,7 @@ class ExtractAndSaveCrawlUrlData implements ShouldQueue
 
     private function generateFileName()
     {
-        $fileName = '/images/'.time().'_'.uniqid().'.png';
+        $fileName = '/'.time().'_'.uniqid().'.png';
         $filePath = "./public{$fileName}";
 
         return [$fileName, $filePath];
