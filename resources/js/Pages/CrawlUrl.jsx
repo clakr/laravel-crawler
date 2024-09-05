@@ -14,7 +14,10 @@ function formatHTMl(input) {
 export default function ({ resource: { data } }) {
   return (
     <Base>
-      <Main header={data.title} className="flex flex-col gap-y-4">
+      <Main
+        header={`Crawled Url #${data.id}`}
+        className="flex flex-col gap-y-4"
+      >
         <Pill className="self-start flex items-center gap-x-2">
           <Calendar />
           Crawled On: {data.createdAt}
@@ -27,10 +30,10 @@ export default function ({ resource: { data } }) {
               className="rounded object-cover"
             />
             <dl className="grid grid-cols-4 gap-4 self-start col-span-2">
-              <DataTerm>URL: </DataTerm>
+              <DataTerm>Title</DataTerm>
               <DataDefinition>
-                <a href="" target="_blank" className="text-blue-500">
-                  {data.url}
+                <a href={data.url} target="_blank" className="text-blue-500">
+                  {data.title}
                 </a>
               </DataDefinition>
               <DataTerm>HTML Description: </DataTerm>

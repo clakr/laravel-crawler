@@ -11,6 +11,14 @@ class CrawlUrl extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'url',
+        'screenshot_img',
+        'title',
+        'description',
+        'body',
+    ];
+
     protected $perPage = 5;
 
     protected function createdAt(): Attribute

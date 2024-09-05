@@ -4,6 +4,7 @@
 - installed the ff. packages
   - `tailwind-merge`
   - `simply-beautiful`
+  - `spatie/laravel-crawler`
 
 ## Todo
 

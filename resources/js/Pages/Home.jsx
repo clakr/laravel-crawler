@@ -1,14 +1,14 @@
 import Base from "@/Layouts/Base";
 import Main from "@/Components/Main";
 import Button from "@/Components/Button";
-import Input from "@/Components/Input";
 import Table from "@/Components/Table";
 import Pagination from "@/Components/Pagination";
 import Eye from "@/Icons/Eye";
+import CrawlForm from "@/Components/CrawlForm";
 
 const TableHeadings = [
   "Thumbnail",
-  "Title & Url",
+  "Title",
   "Description",
   "Crawled",
   "Actions",
@@ -28,16 +28,9 @@ export default function ({ resource: { data, links, meta } }) {
           />
         </Table.TableData>
         <Table.TableData>
-          <div className="flex flex-col gap-y-2">
-            <strong className="text-base">{title}</strong>
-            <a
-              href={url}
-              target="_blank"
-              className="text-blue-500 flex items-center gap-x-2"
-            >
-              {url}
-            </a>
-          </div>
+          <a href={url} target="_blank" className="text-blue-500 font-medium">
+            {title}
+          </a>
         </Table.TableData>
         <Table.TableData className="text-balance">
           {description}
@@ -69,16 +62,7 @@ export default function ({ resource: { data, links, meta } }) {
   return (
     <Base>
       <Main header="Home" className="flex flex-col gap-y-4">
-        <form className="flex gap-x-2 justify-between">
-          <Input
-            type="text"
-            name="url"
-            id="url"
-            className="grow"
-            placeholder="https://github.com/clakr/laravel-crawler"
-          />
-          <Button>Crawl</Button>
-        </form>
+        <CrawlForm />
         <Table headings={TableHeadings}>{TableData}</Table>
         {hasData ? (
           <Pagination

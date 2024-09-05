@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Resources\CrawlUrlResource;
+use App\Jobs\QueueCrawlUrl;
 use App\Models\CrawlUrl;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -12,6 +14,12 @@ Route::get('/', function () {
     return Inertia::render('Home', [
         'resource' => $resource,
     ]);
+});
+
+Route::post('/', function (Request $request) {
+    $url = $request->get('url');
+
+    QueueCrawlUrl::dispatch($url);
 });
 
 Route::get('/crawl-urls/{crawlUrl}', function (CrawlUrl $crawlUrl) {

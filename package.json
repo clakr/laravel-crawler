@@ -21,6 +21,7 @@
     "tailwind-merge": "^2.5.2"
   },
   "dependencies": {
+    "puppeteer": "^23.2.2",
     "simply-beautiful": "^1.0.1"
   }
 }
